@@ -15,6 +15,10 @@ app.use(express.static("public"));
 import { notFound } from './middlewares/notFound.middleware.js'
 import { errorHandler } from './middlewares/error.middleware.js'
 
+import userRoutes from './routes/user.routes.js'
+
+app.use('/api/users', userRoutes);
+
 app.use(notFound);
 app.use(errorHandler);
 
