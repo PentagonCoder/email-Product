@@ -10,7 +10,7 @@ import Layout from "./components/layout/Layout";
 import Register from "./pages/Auth/Register";
 import VerifyEmail from "./pages/Auth/VerifyEmail";
 import useAuthStore from "./store/authStore";
-
+import LandingPage from "./pages/Landing";
 function App() {
   const checkAuth = useAuthStore((state) => state.checkAuth);
 
@@ -20,6 +20,7 @@ function App() {
 
   return (
     <Routes>
+      <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />}/>
       <Route path="/register" element={<Register />} />
       <Route path="/verify-email/:token" element={<VerifyEmail />}/>
