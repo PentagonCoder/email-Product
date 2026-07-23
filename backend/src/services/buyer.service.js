@@ -1,4 +1,4 @@
-import Buyer from "../models/buyer.model.js";
+import Buyer from "../model/buyer.model.js";
 
 export const saveBuyer = async (buyerData) => {
 
