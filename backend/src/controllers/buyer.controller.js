@@ -39,22 +39,28 @@ const searchController = async (req, res) => {
   .json(new ApiResponse(200, savedBuyers , "Buyers retrieved successfully"));
 };
 
-const getBuyersEmails = asyncHandler(async (req, res) => {
+const sendPresentationController = asyncHandler(async (req, res) => {
+
+  const { subject, text } = req.body;
+
+  const file = req.file;
+
   const buyers = await Buyer.find(); // Fetch all buyers
 
   for (const buyer of buyers) {
+
     await sendEmail({
       to: buyer.email,
-      subject: "Singing Bowls Catalogue",
-      text: "Hello,\n\nPlease find our catalogue attached.",
+      subject,
+      text,
       attachments: [
         {
-          filename: "catalogue.pdf",
-          // path: "./assets/presentation.pdf"
+          filename: file.originalname,
+          path: file.path
         }
       ]
     });
   }
   res.status(200).json(new ApiResponse(200, buyers, "Buyers' emails retrieved successfully"));
 })
-export { searchController, getBuyersEmails };
+export { searchController, sendPresentationController };

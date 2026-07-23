@@ -1,11 +1,11 @@
 import { Router } from 'express';
-
 const router = Router();
 
-import { searchController, getBuyersEmails } from '../controllers/buyer.controller.js';
+import { searchController, sendPresentationController } from '../controllers/buyer.controller.js';
+import { upload } from '../middlewares/multer.middleware.js';
 
 // Get scraped data endpoint
-router.get('/search', searchController);
-router.get('/emails', getBuyersEmails);
+router.post('/search', searchController);
+router.post('/emails', upload.single("presentation"), sendPresentationController);
 
 export default router;
